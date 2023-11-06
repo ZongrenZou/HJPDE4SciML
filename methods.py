@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def update_RK4(P0, q0, h, phi, b, lamb=1.0):
+def update_RK4(P0, q0, h, phi, b, lamb=1.0, tau=1.0):
     """
     Applies Runge-Kutta (RK4) scheme to solve P and q in from Ricatti ODEs, regarding
     one new data point. Note that P and q are not updated at the same time: P is updated
@@ -17,6 +17,7 @@ def update_RK4(P0, q0, h, phi, b, lamb=1.0):
                 shape [1, dim].
             b: The targets, with shape [1, 1].
             lamb: The length of the interval.
+            tau: The weight of data loss term.
 
         Returns:
             P: Updated P from Ricatti ODEs.
@@ -27,8 +28,8 @@ def update_RK4(P0, q0, h, phi, b, lamb=1.0):
     # qs = np.zeros(shape=[int(1.0/step), dim, 1])
     P_current, q_current = P0, q0
     hP, hq = 0.5 * h, h
-    T = np.matmul(phi.T, phi)
-    f = np.matmul(phi.T, b)
+    T = tau * np.matmul(phi.T, phi)
+    f = tau * np.matmul(phi.T, b)
     for i in range(int(lamb / np.abs(h))):
         # update P first, two times
         Pk1 = -np.matmul(P_current.T, np.matmul(T, P_current))
@@ -66,12 +67,12 @@ def update_RK4(P0, q0, h, phi, b, lamb=1.0):
     return P_current, q_current
 
 
-def update(P0, q0, h, phi, b, lamb=1.0):
+def update(P0, q0, h, phi, b, lamb=1.0, tau=1.0):
     dim = P0.shape[0]
     P_current, q_current = P0, q0
     hP, hq = 0.5 * h, h
-    T = phi.T @ phi
-    f = phi.T @ b
+    T = tau * phi.T @ phi
+    f = tau * phi.T @ b
     for i in range(int(lamb / np.abs(h))):
         # update P first, two times
         Pk1 = -np.transpose(P_current) @ T @ P_current
