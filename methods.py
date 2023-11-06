@@ -29,7 +29,7 @@ def update_RK4(P0, q0, h, phi, b, lamb=1.0):
     hP, hq = 0.5 * h, h
     T = np.matmul(phi.T, phi)
     f = np.matmul(phi.T, b)
-    for i in range(int(lamb / h)):
+    for i in range(int(lamb / np.abs(h))):
         # update P first, two times
         Pk1 = -np.matmul(P_current.T, np.matmul(T, P_current))
         Pk2 = -np.matmul(
@@ -72,7 +72,7 @@ def update(P0, q0, h, phi, b, lamb=1.0):
     hP, hq = 0.5 * h, h
     T = phi.T @ phi
     f = phi.T @ b
-    for i in range(int(lamb / h)):
+    for i in range(int(lamb / np.abs(h))):
         # update P first, two times
         Pk1 = -np.transpose(P_current) @ T @ P_current
         Pk2 = (

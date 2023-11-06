@@ -66,7 +66,7 @@ phi_test = np.concatenate(
 eps = 100
 P0 = np.eye(phi.shape[1]) / eps
 q0 = np.zeros([phi.shape[1], 1])
-update = numba.njit(methods.update)
+update = numba.njit(methods.update) # very inefficient! update it later.
 
 h = float(args.h)
 P = P0

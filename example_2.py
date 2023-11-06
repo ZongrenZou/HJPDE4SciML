@@ -65,7 +65,7 @@ phi_u = basis(np.array([0.0, 1.0]).reshape([-1, 1]))
 eps = 1
 P0 = np.eye(phi_f.shape[1]) / eps
 q0 = np.zeros([phi_f.shape[1], 1])
-update = numba.njit(methods.update)
+update = numba.njit(methods.update) # very inefficient! update it later
 # update = methods.update
 
 print("Training...")
