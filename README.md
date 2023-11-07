@@ -1,5 +1,5 @@
-# Multi-time HJ PDEs for SciML
-This repository contains source code for the paper (to be published in SIAM Journal on Scientific Computing (SISC)): [Leveraging Multi-time Hamilton-Jacobi PDEs for Certain Scientific Machine Learning Problems](https://arxiv.org/pdf/2303.12928.pdf)
+# Leveraging multi-time HJ PDEs for SciML
+This repository contains source code for the paper (to be published in SIAM Journal on Scientific Computing (SISC)): [Leveraging Multi-time Hamilton-Jacobi PDEs for Certain Scientific Machine Learning Problems](https://arxiv.org/abs/2303.12928)
 
 # Requirements
 For example 3, TensorFlow 2.7.0 is used. All examples are run on CPUs.
