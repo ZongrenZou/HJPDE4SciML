@@ -30,8 +30,8 @@ class Meta(tf.keras.Model):
         self._name = name
 
         self.shared_nn.build(input_shape=[None, 2])
-
-        self.opt = tf.keras.optimizers.Adam(learning_rate=1e-3)
+        # optimizer for PINN is not needed in the downstream task
+        # self.opt = tf.keras.optimizers.Adam(learning_rate=1e-3) 
 
     def call(self, x, y, head):
         basis = self.basis(x, y)
