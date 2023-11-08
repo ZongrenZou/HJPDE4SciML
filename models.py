@@ -1,11 +1,7 @@
 import tensorflow as tf
-import tensorflow_probability as tfp
 import numpy as np
 import time
 
-
-tfd = tfp.distributions
-tfb = tfp.bijectors
 
 
 def jvp(y, x, v):

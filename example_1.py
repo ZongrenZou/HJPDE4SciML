@@ -9,7 +9,7 @@ import methods
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--h", type=float, default=0.1, help="step size")
+parser.add_argument("--h", type=float, default=0.001, help="step size")
 
 args = parser.parse_args()
 
@@ -66,7 +66,8 @@ phi_test = np.concatenate(
 eps = 100
 P0 = np.eye(phi.shape[1]) / eps
 q0 = np.zeros([phi.shape[1], 1])
-update = numba.njit(methods.update) # very inefficient! update it later.
+# update = numba.njit(methods.update) # very inefficient! update it later.
+update = methods.update
 
 h = float(args.h)
 P = P0
